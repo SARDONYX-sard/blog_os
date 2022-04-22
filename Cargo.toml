@@ -3,6 +3,12 @@ name = "blog_os"
 version = "0.1.0"
 edition = "2018"
 
+[package.metadata.bootimage]
+# To automatically terminate QEMU during testing.
+# iobase: specify the port
+# iosize: specify the byte size of the port
+test-args = ["-device", "isa-debug-exit,iobase=0xf4,iosize=0x04"]
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [profile.dev]
