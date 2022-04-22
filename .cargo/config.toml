@@ -1,0 +1,14 @@
+# Result type and others are implicitly dependent on std,
+# so you need to compile Result type and others by yourself under no-std situation.
+[unstable]
+build-std = [
+  "core",
+  "compiler_builtins", # It's core's dependency.
+]
+build-std-features = [
+  # Enable compiler_builtin memcmp etc. to not use C built-in functions.
+  "compiler_builtins-mem", #! need nightly 2019-09-30
+]
+
+[build]
+target = "x86_64-blog_os.json"
