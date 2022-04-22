@@ -7,7 +7,7 @@ build-std = [
 ]
 build-std-features = [
   # Enable compiler_builtin memcmp etc. to not use C built-in functions.
-  "compiler_builtins-mem", #! need nightly 2019-09-30
+  "compiler-builtins-mem", #! need nightly 2019-09-30
 ]
 
 [build]
