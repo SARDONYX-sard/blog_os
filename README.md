@@ -8,6 +8,6 @@ This code was created by looking at the following site.
 
 ## Current working
 
-VGA hello world
+VGA print debug system
 
-![step2](./image/step2.png)
+![panic test](./image/step2/panic_msg_test.png)
