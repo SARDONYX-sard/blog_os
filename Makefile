@@ -1,4 +1,4 @@
-default: build
+default: run
 
 run:
 		cargo run
