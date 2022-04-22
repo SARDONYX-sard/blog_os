@@ -6,6 +6,9 @@ run:
 build:
 		cargo build --target x86_64-blog_os.json
 
+test:
+		cargo test
+
 # need `cargo install bootimage` & `rustup component add llvm-tools-preview`
 mk-boot-img:
 		cargo bootimage
