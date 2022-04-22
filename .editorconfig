@@ -14,5 +14,5 @@ insert_final_newline = true
 [*.rs]
 indent_size = 4
 
-[{Mm}akefile]
+[{M,m}akefile]
 indent_style = tab
