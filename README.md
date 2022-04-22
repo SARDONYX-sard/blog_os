@@ -8,6 +8,6 @@ This code was created by looking at the following site.
 
 ## Current working
 
-VGA print debug system
+test system
 
 ![panic test](./image/step2/panic_msg_test.png)
