@@ -1,3 +1,11 @@
 {
-  "cSpell.words": ["iosize", "repr", "uart"]
+  "cSpell.words": [
+    "bootimage",
+    "Clippy",
+    "iosize",
+    "repr",
+    "rustfmt",
+    "Rustup",
+    "uart"
+  ]
 }
