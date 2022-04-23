@@ -72,6 +72,6 @@ pub fn exit_qemu(exit_code: QemuExitCode) {
     }
 }
 
-pub fn init(){
+pub fn init() {
     interrupts::init_idt();
 }
