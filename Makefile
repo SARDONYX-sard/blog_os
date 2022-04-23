@@ -1,5 +1,8 @@
 default: run
 
+fmt:
+		cargo fmt --all -- --check
+
 run:
 		cargo run
 
