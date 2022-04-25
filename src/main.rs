@@ -11,13 +11,14 @@ use core::panic::PanicInfo;
 entry_point!(kernel_main);
 
 fn kernel_main(boot_info: &'static BootInfo) -> ! {
-    use blog_os::memory::translate_addr;
-    use x86_64::VirtAddr;
+    use blog_os::memory;
+    use x86_64::{structures::paging::Translate, VirtAddr};
 
     println!("Hello world{}", "!");
     blog_os::init();
 
     let phys_mem_offset = VirtAddr::new(boot_info.physical_memory_offset);
+    let mapper = memory::init(phys_mem_offset);
 
     let addresses = [
         // Identity supported VGA buffer page
@@ -32,7 +33,7 @@ fn kernel_main(boot_info: &'static BootInfo) -> ! {
 
     for &address in &addresses {
         let virt = VirtAddr::new(address);
-        let phys = translate_addr(virt, phys_mem_offset);
+        let phys = mapper.translate_addr(virt);
         println!("{:?} -> {:?}", virt, phys);
     }
 
