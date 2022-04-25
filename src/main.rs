@@ -7,18 +7,25 @@
 use blog_os::println;
 use bootloader::{entry_point, BootInfo};
 use core::panic::PanicInfo;
+use x86_64::structures::paging::PageTable;
 
 entry_point!(kernel_main);
 
 fn kernel_main(boot_info: &'static BootInfo) -> ! {
-    println!("Hello world{}", "!");
+    use blog_os::memory::activate_level_4_table;
+    use x86_64::VirtAddr;
 
+    println!("Hello world{}", "!");
     blog_os::init();
 
-    use x86_64::registers::control::Cr3;
+    let phys_mem_offset = VirtAddr::new(boot_info.physical_memory_offset);
+    let l4_table = activate_level_4_table(phys_mem_offset);
 
-    let (level_4_table, _) = Cr3::read();
-    println!("Level 4 table at: {:?}", level_4_table.start_address());
+    for (i, entry) in l4_table.iter().enumerate() {
+        if !entry.is_unused() {
+            println!("L4 Entry {}: {:?}", i, entry);
+        }
+    }
 
     #[cfg(test)]
     test_main();
