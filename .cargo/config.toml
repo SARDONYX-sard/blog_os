@@ -4,6 +4,7 @@
 build-std = [
   "core",
   "compiler_builtins", # It's core's dependency.
+  "alloc",
 ]
 build-std-features = [
   # Enable compiler_builtin memcmp etc. to not use C built-in functions.

@@ -3,6 +3,7 @@
     "bootimage",
     "bootloader",
     "Clippy",
+    "dealloc",
     "iosize",
     "repr",
     "rustfmt",
