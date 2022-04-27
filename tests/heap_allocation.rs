@@ -6,7 +6,7 @@
 
 use core::panic::PanicInfo;
 
-use alloc::boxed::Box;
+use alloc::{boxed::Box, vec::Vec};
 use bootloader::{entry_point, BootInfo};
 
 extern crate alloc;
@@ -34,6 +34,17 @@ fn simple_allocation() {
 
     assert_eq!(*heap_value, 41);
     assert_eq!(*heap_value2, 13);
+}
+
+#[test_case]
+fn large_vec() {
+    let n = 1000;
+    let mut vec = Vec::new();
+    for i in 0..n {
+        vec.push(i);
+    }
+
+    assert_eq!(vec.iter().sum::<u64>(), (n - 1) * n / 2);
 }
 
 #[panic_handler]
