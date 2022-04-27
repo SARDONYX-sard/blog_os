@@ -7,6 +7,7 @@
 use core::panic::PanicInfo;
 
 use alloc::{boxed::Box, vec::Vec};
+use blog_os::allocator::HEAP_SIZE;
 use bootloader::{entry_point, BootInfo};
 
 extern crate alloc;
@@ -45,6 +46,14 @@ fn large_vec() {
     }
 
     assert_eq!(vec.iter().sum::<u64>(), (n - 1) * n / 2);
+}
+
+#[test_case]
+fn many_box() {
+    for i in 0..HEAP_SIZE {
+        let x = Box::new(i);
+        assert_eq!(*x, i);
+    }
 }
 
 #[panic_handler]
