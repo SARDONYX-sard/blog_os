@@ -13,7 +13,7 @@ pub struct BumpAllocator {
 }
 
 impl BumpAllocator {
-    pub const fn new() -> BumpAllocator {
+    pub const fn new() -> Self {
         BumpAllocator {
             heap_start: 0,
             heap_end: 0,
@@ -28,7 +28,7 @@ impl BumpAllocator {
     /// memory range is unused. Also, this method must be called only once.
     pub unsafe fn init(&mut self, heap_start: usize, heap_size: usize) {
         self.heap_start = heap_start;
-        self.heap_end = heap_start + heap_size;
+        self.heap_end = heap_start.saturating_add(heap_size);
         self.next = heap_start;
     }
 }
@@ -43,7 +43,7 @@ unsafe impl GlobalAlloc for Locked<BumpAllocator> {
             None => return ptr::null_mut(),
         };
 
-        if alloc_end < bump.heap_end {
+        if alloc_end > bump.heap_end {
             ptr::null_mut() // out of memory
         } else {
             bump.next = alloc_end;
@@ -54,6 +54,7 @@ unsafe impl GlobalAlloc for Locked<BumpAllocator> {
 
     unsafe fn dealloc(&self, _ptr: *mut u8, _layout: Layout) {
         let mut bump = self.lock(); // get a mutable reference
+
         bump.allocations -= 1;
         if bump.allocations == 0 {
             bump.next = bump.heap_start;
