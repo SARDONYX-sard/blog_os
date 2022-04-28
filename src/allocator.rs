@@ -1,3 +1,5 @@
+pub mod bump;
+
 use core::alloc::{GlobalAlloc, Layout};
 use core::ptr::null_mut;
 
@@ -51,4 +53,31 @@ pub fn init_heap(
     }
 
     Ok(())
+}
+
+/// A wrapper around spin::Mutex to permit trait implementations
+pub struct Locked<A> {
+    inner: spin::Mutex<A>,
+}
+
+impl<A> Locked<A> {
+    pub const fn new(inner: A) -> Locked<A> {
+        Locked {
+            inner: spin::Mutex::new(inner),
+        }
+    }
+
+    pub fn lock(&self) -> spin::MutexGuard<A> {
+        self.inner.lock()
+    }
+}
+
+/// Align the given address `addr` upwards to alignment `align`.
+fn align_up(next: usize, align: usize) -> usize {
+    let remainder = next % align;
+    if remainder == 0 {
+        next
+    } else {
+        next + align - remainder
+    }
 }
