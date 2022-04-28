@@ -7,6 +7,7 @@ use x86_64::structures::paging::{FrameAllocator, Mapper, Page, PageTableFlags, S
 use x86_64::VirtAddr;
 
 pub mod bump;
+pub mod linked_list;
 
 pub struct Dummy;
 
