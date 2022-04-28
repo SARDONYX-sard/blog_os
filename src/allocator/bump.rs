@@ -10,7 +10,7 @@ pub struct BumpAllocator {
 }
 
 impl BumpAllocator {
-    pub fn new() -> BumpAllocator {
+    pub const fn new() -> BumpAllocator {
         BumpAllocator {
             heap_start: 0,
             heap_end: 0,
