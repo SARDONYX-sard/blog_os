@@ -1,14 +1,12 @@
-pub mod bump;
-
-use core::alloc::{GlobalAlloc, Layout};
+use alloc::alloc::{GlobalAlloc, Layout};
+use bump::BumpAllocator;
 use core::ptr::null_mut;
-
 use x86_64::structures::paging::mapper::MapToError;
 use x86_64::structures::paging::page::PageRange;
 use x86_64::structures::paging::{FrameAllocator, Mapper, Page, PageTableFlags, Size4KiB};
 use x86_64::VirtAddr;
 
-use self::bump::BumpAllocator;
+pub mod bump;
 
 pub struct Dummy;
 
@@ -62,7 +60,7 @@ pub struct Locked<A> {
 }
 
 impl<A> Locked<A> {
-    pub const fn new(inner: A) -> Locked<A> {
+    pub const fn new(inner: A) -> Self {
         Locked {
             inner: spin::Mutex::new(inner),
         }
