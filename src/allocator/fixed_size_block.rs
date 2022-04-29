@@ -48,3 +48,10 @@ impl FixedSizeBlockAllocator {
     }
 }
 
+/// Choose an appropriate the block size for the given Layout.
+/// Returns None if the layout is not suitable for a FixedSizeBlockAllocator.
+fn list_index(layout: &Layout) -> Option<usize> {
+    let required_block_size = layout.size().max(layout.align());
+    //  to use the returned index as an index into the list_heads array
+    BLOCK_SIZE.iter().position(|&s| s >= required_block_size)
+}
