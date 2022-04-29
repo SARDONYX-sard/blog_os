@@ -21,9 +21,9 @@ pub struct FixedSizeBlockAllocator {
 impl FixedSizeBlockAllocator {
     // Creates an empty FixedSizeBlockAllocator.
     pub const fn new() -> Self {
-        const Empty: Option<&'static mut ListNode> = None;
+        const EMPTY: Option<&'static mut ListNode> = None;
         FixedSizeBlockAllocator {
-            list_heads: [Empty; BLOCK_SIZE.len()],
+            list_heads: [EMPTY; BLOCK_SIZE.len()],
             fallback_allocator: linked_list_allocator::Heap::empty(),
         }
     }
@@ -46,12 +46,4 @@ impl FixedSizeBlockAllocator {
             Err(_) => ptr::null_mut(),
         }
     }
-}
-
-/// Choose an appropriate the block size for the given Layout.
-/// Returns None if the layout is not suitable for a FixedSizeBlockAllocator.
-fn list_index(layout: &Layout) -> Option<usize> {
-    let required_block_size = layout.size().max(layout.align());
-    //  to use the returned index as an index into the list_heads array
-    BLOCK_SIZE.iter().position(|&s| s >= required_block_size)
 }
