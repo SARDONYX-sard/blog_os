@@ -9,6 +9,7 @@
     "rustfmt",
     "Rustup",
     "uart",
-    "Virt"
+    "Virt",
+    "vtable"
   ]
 }
