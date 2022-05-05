@@ -120,6 +120,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "60302e4db3a61da70c0cb7991976248362f30319e88850c487b9b95bbf059e00"
 
 [[package]]
+<<<<<<< HEAD
 name = "pc-keyboard"
 version = "0.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -135,6 +136,8 @@ dependencies = [
 ]
 
 [[package]]
+=======
+>>>>>>> 714732cc79aad21786e4f1c4e3414770ba50e6d2
 name = "rustversion"
 version = "1.0.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
