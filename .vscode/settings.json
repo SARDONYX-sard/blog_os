@@ -8,6 +8,7 @@
     "repr",
     "rustfmt",
     "Rustup",
+    "scancode",
     "uart",
     "Virt"
   ]
