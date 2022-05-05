@@ -5,9 +5,11 @@
     "Clippy",
     "dealloc",
     "iosize",
+    "keyevent",
     "repr",
     "rustfmt",
     "Rustup",
+    "scancode",
     "uart",
     "Virt"
   ]
