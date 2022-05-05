@@ -27,6 +27,7 @@ dependencies = [
  "bootloader",
  "lazy_static",
  "linked_list_allocator",
+ "pic8259",
  "spin",
  "uart_16550",
  "volatile 0.2.7",
@@ -65,6 +66,15 @@ checksum = "327fa5b6a6940e4699ec49a9beae1ea4845c6bab9314e4f84ac68742139d8c53"
 dependencies = [
  "autocfg",
  "scopeguard",
+]
+
+[[package]]
+name = "pic8259"
+version = "0.10.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "24ec21f514e2e16e94649f1d041ca4a7069b512c037ac156360652a775e6229d"
+dependencies = [
+ "x86_64",
 ]
 
 [[package]]
