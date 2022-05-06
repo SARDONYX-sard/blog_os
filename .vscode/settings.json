@@ -6,6 +6,7 @@
     "dealloc",
     "iosize",
     "keyevent",
+    "keypresses",
     "repr",
     "rustfmt",
     "Rustup",
