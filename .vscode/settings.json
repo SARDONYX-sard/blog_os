@@ -6,11 +6,14 @@
     "dealloc",
     "iosize",
     "keyevent",
+    "keypresses",
     "repr",
     "rustfmt",
     "Rustup",
     "scancode",
     "uart",
-    "Virt"
+    "uninit",
+    "Virt",
+    "vtable"
   ]
 }
